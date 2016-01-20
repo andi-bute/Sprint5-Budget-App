@@ -4,6 +4,18 @@
 //lvl1
 var totalBudget = 0;
 var balance = 0;
+RecurringIncomes= [{
+    namecategory: salariu,
+    dayOfMonth: 1,
+    amount: 500
+    },
+    {
+        namecategory: bursa,
+        dayOfMonth: 15,
+        amount: 100
+    },
+
+];
 BudgetRepository = {
     getBudget: function () {
         var results = [];
@@ -20,19 +32,11 @@ BudgetRepository = {
     editBudget: function (Updatedata) {
         totalBudget = Updatedata;
     },
-    setRecurringRevenue: function (id) {
-        if (el.id == id) {
-            if (el.type === "budget") {
-                el.recurring = true;
-            }
-        }
+    setRecurringRevenue: function (item) {
+        RecurringIncomes.push(item);
     },
-    setUnreliebleRevenue: function (id) {
-        if (el.id == id) {
-            if (el.type === "budget") {
-                el.recurring = false;
-            }
-        }
+    setUnreliebleRevenue: function (item) {
+        UnreliablleIncomes.push(item);
     }
 };
 
