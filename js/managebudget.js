@@ -4,13 +4,13 @@
 //lvl1
 var totalBudget = 0;
 var balance = 0;
-RecurringIncomes= [{
-    namecategory: salariu,
+RecurringIncomes = [{
+    categoryName: 'salariu',
     dayOfMonth: 1,
     amount: 500
-    },
+},
     {
-        namecategory: bursa,
+        categoryName: 'bursa',
         dayOfMonth: 15,
         amount: 100
     },
@@ -39,42 +39,6 @@ BudgetRepository = {
         UnreliablleIncomes.push(item);
     }
 };
-
-//    addExtraBudget: function () {
-//        data.forEach(function (el) {
-//            if (el.type === "budget") {
-//                totalBudget += el.amount;
-//            }
-//        })
-//    },
-//    deleteBudget: function (id) {
-//        data.forEach(function (el) {
-//            if (el.id == id) {
-//                if (el.type === "budget") {
-//                    // console.log(this);
-//                    totalBudget -= el.amount;
-//                }
-//            }
-//        })
-//    },
-//    getFullBudgetObject: function (dateStart, dateEnd) {
-//        var results = [];
-//        data.forEach(function (el) {
-//            if (el.date >= datestart && el.date <= dateend) {
-//                results.push(el)
-//            }
-//        });
-//        return results;
-//    },
-//    substractBudget: function () {
-//        data.forEach(function (el) {
-//            if (el.type === "expense") {
-//                balance -= el.amount;
-//            }
-//        })
-//    }
-//};
-
 
 // lvl0
 var data = [
