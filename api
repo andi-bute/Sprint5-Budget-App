@@ -1,0 +1,89 @@
+Sprint 5 Echipa Furnica Backend API
+
+GET /recurring
+- returns all recurring payments
+
+Sample response : {"total": 500,
+                   "list": [
+                        {"id":1, "catId":1, "amount": 300, "date":1-2-2016},
+                        {"id":2, "catId":4, "amount": -200, "date":2-2-2016}
+                    ]}
+
+Parameters :
+   type=all (default) , positive , negative
+
+GET /recurring/{id}
+- returns a recurring payment by id
+
+POST /recurring/{id}
+ - adds a recurring payment
+
+PUT /recurring/{id}
+ - edits a recurring payment
+
+DELETE /recurring/{id}
+ - deletes a recurring payment
+
+
+CATEGORY
+
+ GET /category
+ - returns all categories
+
+ Sample response : {
+                    "list": [
+                         {"id":1, "name":"Food", type="expense", "limit":300},
+                         {"id":2, "name":"Transportation", type="expense", limit":100},
+                         {"id":2, "name":"Salary", type="income", limit":0}
+                     ]}
+
+ Parameters :
+    type="all" (default)
+    type="positive"
+    type="negative"
+
+ GET /recurring/{id}
+ - returns a recurring payment by id
+
+ POST /recurring
+  - adds a recurring payment
+
+ PUT /recurring/{id}
+  - edits a recurring payment
+
+ DELETE /recurring/{id}
+  - deletes a recurring payment
+
+
+
+
+
+TRANSACTIONS
+
+ GET /category
+ - returns all categories
+
+ Sample response : {
+                    "list": [
+                         {"id":1, "name":"Food", type="expense", "limit":300},
+                         {"id":2, "name":"Transportation", type="expense", limit":100},
+                         {"id":2, "name":"Salary", type="income", limit":0}
+                     ]}
+
+ Parameters :
+    type="all" (default)
+    type="positive"
+    type="negative"
+
+ GET /recurring/{id}
+ - returns a recurring payment by id
+
+ POST /recurring
+  - adds a recurring payment
+
+ PUT /recurring/{id}
+  - edits a recurring payment
+
+ DELETE /recurring/{id}
+  - deletes a recurring payment
+
