@@ -1,3 +1,11 @@
-body{
-	background-color:#cccccc;
+body {
+    background-color: #cccccc;
+}
+
+.bordered {
+    border: 1px solid #292929;
+}
+
+.large-margin-top {
+    margin-top: 100px;
 }

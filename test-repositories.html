@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Budgeting App</title>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<div id="testRepositories">
+    <div class="container large-margin-top">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-inline">
+                    <label for="inputID">ID</label>
+                    <input type="text" id="inputID" class="form-control">
+                    <label for="inputName">Name</label>
+                    <input type="text" id="inputName" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <table class="table , table-bordered">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/html" id="repositoriesTableTemplate">
+    <tr class="table_row" >
+        <td>
+            <%=id%>
+        </td>
+        <td>
+            <%=name%>
+        </td>
+
+    </tr>
+</script>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/abstractRepository.js"></script>
+<script src="js/test.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
