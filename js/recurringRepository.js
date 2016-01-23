@@ -13,13 +13,15 @@ var recurringRespository = (function () {
             id: 1,
             catId: 2, //could be category name
             amount: 1000,
-            name: "Monthly salary"
+            day:17,
+            tag: "Monthly salary"
         },
         {
             id: 2,
             catId: 3, //could be category name
             amount: -200,
-            name: "Internet bill payment"
+            day:22,
+            tag: "Internet bill payment"
         }
     ];
     return {
