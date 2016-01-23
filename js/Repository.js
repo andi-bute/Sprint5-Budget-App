@@ -78,8 +78,6 @@ function Repository(url) {
             remoteStore.getAll().then(
                 function (data) {
                     localStore.setAll(data);
-                    console.log("data : \n");
-                    console.log(data);
                 },
                 repoErrorHandler
             );
@@ -131,8 +129,8 @@ function Repository(url) {
             )
         },
 
-        logLocalStore: function () {
-            console.log(localStore.getAll());
+        getLocalStore: function () {
+            return localStore.getAll();
         }
     }
 }
