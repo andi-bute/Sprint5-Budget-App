@@ -10,14 +10,20 @@
     <link rel="stylesheet" type="text/css"  href="css/roxana-main.css">
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid content">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <img alt="Logo" src="images/BudgetAnts2.gif" class="logo">
+                <a href="#" class="btn btn-primary logoutBtn">Log Out</a>
+            </div>
+        </nav>
         <div class="row">
            <div class="col-md-6">
                 <div class="budget">
                     <h1>BUDGET</h1>
                     <h3>2000 RON</h3>
                     <p>19 January 2016</p>
-                    <button class="btn btn-success">New income</button>
+                    <!--<button class="btn btn-success">New income</button>-->
                 </div>
             </div>
             <div class="col-md-6">
@@ -29,8 +35,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <form>
+            <div class="col-md-6 col-md-offset-3">
+                <form class="form1">
                     <div class="form-group">
                         <label for="inputName">Name</label>
                         <input type="text" id="inputName" class="form-control"/>
@@ -88,7 +94,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
     <script src="js/categoriesRepository.js"></script>
-    <script src="js/template-engine.js"></script>
-    <script src="js/sprint5.js"></script>
+    <!--<script src="js/template-engine.js"></script>-->
+    <!--<script src="js/sprint5.js"></script>-->
 </body>
 </html>
