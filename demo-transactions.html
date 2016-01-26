@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta charset="UTF-8">
+        <title>GoDev Sprint 4 Budgeting App</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/demo-transactions.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="col-md-4">
+            <div class="col-md-5">
+                <h1>Transactions</h1>
+            </div>
+            <div class="col-md-5 bordered">
+                <form class="form-horizontal" id="transactions-form">
+                    <div class="form-group">
+                        <div class="col-sm-14">
+                            <input type="number" class="form-control" placeholder="Amount" id="transactions-amount-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-14">
+                            <input type="text" class="form-control" placeholder="Tag" id="transactions-tag-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-14">
+                            <input type="date" class="form-control" placeholder="Date" id="transactions-date-input">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-14">
+                            <button type="submit" class="btn btn-default transition">Add</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <h1 class="inline-block">Current Transactions</h1>
+            </div>
+            <div id="displays">
+            </div>
+        </div>
+        <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="js/transactionsRepository.js"></script>
+    </body>
+</html>
