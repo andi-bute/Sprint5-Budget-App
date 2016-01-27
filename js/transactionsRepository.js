@@ -1,41 +1,27 @@
-var repositoryTransactions = (function () {
+var transactionsRepository = (function () {
 
     var id = 5;
     var data = [
         {
             id: 1,
-            category: 'Transport',
+            catId: 4,
             amount: -15,
             tag: 'RATB tickets',
             date: '2016-01-19'
         },
         {
             id: 2,
-            category: 'Food',
+            catId: 2,
             amount: -25,
             tag: 'Pizza Lunch',
             date: '2016-01-15'
         },
         {
             id: 3,
-            category: 'Clothing',
+            catId: 3,
             amount: -50,
             tag: 'T-shirt',
             date: '2016-01-13'
-        },
-        {
-            id: 4,
-            category: 'Tips',
-            amount: +90,
-            tag: 'Customer Tip',
-            date: '2016-01-12'
-        },
-        {
-            id: 5,
-            category: 'Godev Site Update',
-            amount: +200,
-            tag: 'Web Dev Gig',
-            date: '2016-01-21'
         }
     ];
 
