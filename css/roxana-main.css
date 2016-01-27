@@ -28,9 +28,9 @@ thead {
     width:99%;
 }
 .navbar {
-    height: 80px;
-    background-color: #ffffff;
-    margin-top: 0;
+    height:80px;
+    background-color:#ffffff;
+    margin-top:0;
 }
 .logo {
     width:250px;
@@ -38,7 +38,7 @@ thead {
     margin-top:10px;
 }
 body {
-    padding-top: 70px;
+    padding-top:70px;
 }
 .form1{
     background-color: #ffffff;

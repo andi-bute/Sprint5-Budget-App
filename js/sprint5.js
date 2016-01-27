@@ -1,31 +1,67 @@
-$(document).ready(function() {
-    $('form').submit(onSubmit);
-    drawTable();
-});
-
 var $tbody = $('table').find('tbody');
 
-var drawTable = function (){
+var drawTable = function (transactionsRepository){
 
-    repositoryTransactions.getAll().then(function(data){
+    transactionsRepository.getAll().then(function(data){
         $tbody.empty();
-        $.each(data, function() {
-            var tr = (tmpl("tpl", this));
-            $tbody.append(tr);
+        $.each(data, function(index,element) {
+            categoriesRepository.get(element.catId).then(function(category){
+                var tr = (tmpl("tpl", {
+                    id: element.id,
+                    name: category.name,
+                    tag: element.tag,
+                    amount: Math.abs(element.amount),
+                    date: element.date
+                }));
+                $tbody.append(tr);
+                $tbody.find('a.delete').click(deleteClicked);
+            });
+
         });
     });
 };
+
 var onSubmit = function(){
+    var catInput = $('#catSelect').val();
     updateBudget("calculate", parseFloat($('#inputAmount').val()));
-    var data = {
-        tag: $('#inputTag').val(),
-        catID: $('#catSelect').val(),
-        amount: $('#inputAmount').val(),
-        date:$('#inputDate').val()
-    };
-    repositoryTransactions.add(data).then(function() {
-        drawTable();
+    categoriesRepository.getAll().then(function(data){
+        $.each(data, function(index, el) {
+                if (catInput == el.name) {
+                    var data = {
+                            tag: $('#inputTag').val(),
+                            catId: el.id,
+                            amount: $('#inputAmount').val(),
+                            date: $('#inputDate').val()
+                        };
+                    transactionsRepository.add(data).then(function() {
+                        drawTable(transactionsRepository);
+                        resetForm();
+                    });
+                }
+        });
     });
 
     return false;
 };
+
+var deleteClicked = function() {
+    var id = $(this).closest('tr').data('id');
+
+    transactionsRepository.delete(id).then(function() {
+            drawTable(transactionsRepository);
+        });
+
+    return false;
+};
+
+var resetForm = function (){
+    $('#catSelect').val("");
+    $('#inputTag').val("");
+    $('#inputAmount').val("");
+    $('#inputDate').val("");
+};
+
+$(document).ready(function() {
+    $('form').submit(onSubmit);
+    drawTable(transactionsRepository);
+});
