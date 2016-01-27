@@ -1,15 +1,8 @@
 var path        = require('path'),
-<<<<<<< HEAD
     gulp        = require('gulp'),
     $           = require('gulp-load-plugins')(),
     gulpsync    = $.sync(gulp),
     del         = require('del');
-=======
-  gulp        = require('gulp'),
-  $           = require('gulp-load-plugins')(),
-  gulpsync    = $.sync(gulp),
-  del         = require('del');
->>>>>>> aef97b71341acea03b4501e2d5aea6bfdae34d55
 webserver   = require('gulp-webserver');
 
 
@@ -83,7 +76,6 @@ gulp.task('watch', function() {
   var livereloadDelay = 500;
   // list of source file to watch for live reload
   var watchSource = [].concat(
-<<<<<<< HEAD
       source.scripts,
       source.styles.watch,
       'index.html'
@@ -96,37 +88,15 @@ gulp.task('watch', function() {
           $.livereload.changed( event.path );
         }, livereloadDelay);
       });
-=======
-    source.scripts,
-    source.styles.watch,
-    'roxana-index.html'
-  );
-
-  gulp
-    .watch(watchSource)
-    .on('change', function(event) {
-      setTimeout(function() {
-        $.livereload.changed( event.path );
-      }, livereloadDelay);
-    });
->>>>>>> aef97b71341acea03b4501e2d5aea6bfdae34d55
-
 });
 
 // lint javascript
 gulp.task('lint', function() {
   return gulp
-<<<<<<< HEAD
       .src(source.scripts)
       .pipe($.jshint())
       .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
       .pipe($.jshint.reporter('fail'));
-=======
-    .src(source.scripts)
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
-    .pipe($.jshint.reporter('fail'));
->>>>>>> aef97b71341acea03b4501e2d5aea6bfdae34d55
 });
 
 // Remove all files from the build paths
@@ -164,19 +134,11 @@ gulp.task('default', gulpsync.sync([
 
 gulp.task('webserver', function() {
   gulp.src('./')
-<<<<<<< HEAD
       .pipe(webserver({
         livereload: true,
         open: true,
         defaultFile: 'index.html'
       }));
-=======
-    .pipe(webserver({
-      livereload: true,
-      open: true,
-      defaultFile: 'roxana-index.html'
-    }));
->>>>>>> aef97b71341acea03b4501e2d5aea6bfdae34d55
 });
 /////////////////////
 
