@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BudgetAnts</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css"  href="css/roxana-main.css">
+</head>
+<body>
+    <div class="container-fluid content">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <img alt="Logo" src="images/BudgetAnts2.gif" class="logo">
+                <a href="#" class="btn btn-primary logoutBtn">Log Out</a>
+            </div>
+        </nav>
+        <div class="row">
+           <div class="col-md-6">
+                <div class="budget">
+                    <h1>BUDGET</h1>
+                    <h3>2000 RON</h3>
+                    <p>19 January 2016</p>
+                    <!--<button class="btn btn-success">New income</button>-->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="expenses">
+                    <h1>EXPENSES</h1>
+                    <h3>500 RON</h3>
+                    <p>19 January 2016</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form class="form1">
+                    <div class="form-group">
+                        <label for="inputTag">Tag</label>
+                        <input type="text" id="inputTag" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="catSelect">Category</label>
+                        <select id="catSelect" class="form-control">
+                            <option>Select a category</option>
+                            <option value="Groceries">Food</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAmount">Amount</label>
+                        <input type="text" id="inputAmount" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate">Date</label>
+                        <input type="date" id="inputDate" class="form-control"/>
+                    </div>
+                    <input type="submit" value="Add" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th><a href="#">Tag <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Category <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Amount <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Date <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Actions </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cat food</td>
+                            <td>Pets</td>
+                            <td>200 RON</td>
+                            <td>19 January 2016</td>
+                            <td>
+                                <div>
+                                    <a href="#"  class="btn btn-info">Edit</a>
+                                    <a href="#" class="btn btn-default btn-danger">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="tpl">
+        <tr data-id="<%=id%>">
+            <td><%=tag%></td>
+            <td><%=name%></td>
+            <td><%=amount%> RON</td>
+            <td><%=date%></td>
+            <td>
+                <div>
+                    <a href="#"  class="btn btn-info">Edit</a>
+                    <a href="#" class="btn btn-default btn-danger">Delete</a>
+                </div>
+            </td>
+        </tr>
+    </script>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="js/categoriesRepository.js"></script>
+    <script src="js/transactionsRepository.js"></script>
+    <!--<script src="js/recurringRepository.js"></script>-->
+    <script src="js/template-engine.js"></script>
+    <script src="js/sprint5.js"></script>
+</body>
+</html>
