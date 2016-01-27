@@ -3,16 +3,22 @@ var categoriesRepository = (function () {
        // private
     var data = [
         {
-            name: "Food",
+            name: "Transport",
             type: "Expenses",
             limitation: 500,
-            id: 1
+            id: 4
         },
         {
-            name: "Salary",
-            type: "Income",
+            name: "Food",
+            type: "Expenses",
             limitation: 0,
             id: 2
+        },
+        {
+            name: "Clothing",
+            type: "Expenses",
+            limitation: 500,
+            id: 3
         }
     ];
 //public
@@ -34,7 +40,7 @@ var categoriesRepository = (function () {
         add: function (item) {
            return new Promise(function (resolve, reject) {
                     data.push(item);
-                    item.id = 2;
+                    item.id = ++id;
                     resolve(data);
                 });
         },
