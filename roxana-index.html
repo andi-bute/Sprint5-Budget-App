@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BudgetAnts</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" type="text/css"  href="css/roxana-main.css">
 </head>
@@ -14,16 +13,19 @@
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <img alt="Logo" src="images/BudgetAnts2.gif" class="logo">
-                <a href="#" class="btn btn-primary logoutBtn">Log Out</a>
+                <a href="#" class="btn btn-logout btn-teal transition">Log Out</a>
             </div>
         </nav>
         <div class="row">
            <div class="col-md-6">
                 <div class="budget">
-                    <h1>BUDGET</h1>
-                    <h3>2000 RON</h3>
+                    <h1>CURRENT BUDGET</h1>
+                    <h3 class="inline" id="budget-box"></h3>
+                    <h3 class="inline">RON</h3>
                     <p>19 January 2016</p>
-                    <!--<button class="btn btn-success">New income</button>-->
+                    <button id="btn-edit-budget" class="btn btn-teal transition">Edit Budget</button>
+                    <button id="btn-accept-edit-budget" class="btn btn-teal undisplayed">Accept</button>
+                    <button id="btn-cancel-edit-budget" class="btn btn-teal undisplayed">Cancel</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -58,7 +60,7 @@
                         <label for="inputDate">Date</label>
                         <input type="date" id="inputDate" class="form-control"/>
                     </div>
-                    <input type="submit" value="Add" class="btn btn-primary"/>
+                    <input type="submit" value="Add" class="btn btn-primary btn-teal transition"/>
                 </form>
             </div>
         </div>
@@ -106,11 +108,12 @@
             </td>
         </tr>
     </script>
-    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/categoriesRepository.js"></script>
     <script src="js/transactionsRepository.js"></script>
-    <script src="js/recurringRepository.js"></script>
+    <script src="js/budgetRepository.js"></script>
     <script src="js/template-engine.js"></script>
+    <script src="js/budget-services.js"></script>
     <script src="js/sprint5.js"></script>
 </body>
 </html>

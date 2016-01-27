@@ -1,8 +1,8 @@
 $(document).ready(function() {
     $('form').submit(onSubmit);
     drawTable();
-
 });
+
 var $tbody = $('table').find('tbody');
 
 var drawTable = function (){
@@ -16,6 +16,7 @@ var drawTable = function (){
     });
 };
 var onSubmit = function(){
+    updateBudget("calculate", parseFloat($('#inputAmount').val()));
     var data = {
         tag: $('#inputTag').val(),
         catID: $('#catSelect').val(),

@@ -13,9 +13,6 @@
     padding:20px 0 20px 0;
     background-color: #ffffff;
 }
-/*.expenses {*/
-    /*padding-bottom:54px*/
-/*}*/
 .table{
     margin-bottom:50px;
 }
@@ -30,9 +27,6 @@ thead {
     background-color: #EEEEEE;
     width:99%;
 }
-/*body {*/
-    /*background-color: #BDBDBD;*/
-/*}*/
 .navbar {
     height: 80px;
     background-color: #ffffff;
@@ -49,8 +43,44 @@ body {
     background-color: #ffffff;
     padding:30px;
 }
-.logoutBtn {
+.btn-logout {
     float:right;
     top:50px;
     transform:translateY(50%);
+}
+.btn-teal {
+    background-color: #1DE9B6;
+    border-color: #1DE9B6;
+    outline: none;
+    color: white;
+}
+.btn-teal:hover {
+    background-color: white;
+    color: #1DE9B6;
+    border-color: #1DE9B6;
+    outline: none;
+}
+.btn-teal:focus {
+    background-color: white;
+    color: #1DE9B6;
+    border-color: #1DE9B6;
+    outline: none;
+}
+.edit-update-input {
+    border: none;
+    display: inline;
+    text-align: center;
+    margin: -2px auto -2px auto;
+    font-size: 24px;
+    outline-color: #1DE9B6;
+    width: 53.3px;
+}
+.undisplayed {
+    display: none;
+}
+.transition {
+    transition: 0.4s;
+}
+.inline {
+    display: inline;
 }

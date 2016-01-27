@@ -1,1 +1,7 @@
-*.idea
+.idea/*
+node_modules/*
+api.text
+css/bootstrap.css
+css/normalize.css
+js/jquery-2.1.4.min.js
+js/template-engine.js
