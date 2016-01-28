@@ -111,9 +111,10 @@ function Repository(url) {
         add: function (item) {
 
             return new Promise(function (resolve, reject) {
+                localStore.add(data);
                 remoteStore.add(item).then(
                     function (data) {
-                        localStore.add(data);
+                        //localStore.add(data); aici
                         resolve(data);
                     },
                     function (xhr) {

@@ -1,3 +1,7 @@
+var transactionsRepository = new Repository("http://furnici.meteor.com/api/transactions");
+var categoriesRepository = new Repository("http://furnici.meteor.com/api/categories");
+var reccurringRepository = new Repository("http://furnici.meteor.com/api/recurring");
+
 var $tbody = $('table').find('tbody');
 
 var drawTable = function (transactionsRepository){
