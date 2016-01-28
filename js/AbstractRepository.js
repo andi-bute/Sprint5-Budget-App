@@ -9,7 +9,8 @@ function RemoteStore(url) {
             return ajaxPromise(url + "/" + id, defaults);
         },
         getAll: function (settings) {
-            return ajaxPromise(url, defaults)
+            settings = settings == undefined ? "" : settings;
+            return ajaxPromise(url, $.extend({}, defaults, {data: JSON.stringify(settings)}));
         },
         add: function (item) {
             var requestSettings = $.extend({}, defaults, {type: "POST", data: JSON.stringify(item)});
@@ -44,7 +45,6 @@ function LocalStore() {
                     return data[index];
                 }
             });
-
             return null;
         },
 
@@ -57,7 +57,7 @@ function LocalStore() {
         },
 
         add: function (item) {
-            data.push(item)
+            data.push(item);
         },
 
         delete: function (id) {
@@ -75,16 +75,15 @@ function Repository(url) {
     var localStore = new LocalStore();
 
     return {
-        getAll: function () {
+        getAll: function (settings) {
             return new Promise(function (resolve, reject) {
-                remoteStore.getAll().then(
+                remoteStore.getAll(settings).then(
                     function (data) {
                         localStore.cache(data);
                         resolve(data);
-                    },
-                    errorHandler(reject)
-                );
-
+                    }, function (xhr) {
+                        errorHandler(xhr, reject)
+                    });
             });
         },
 
@@ -102,9 +101,9 @@ function Repository(url) {
                     remoteStore.get(id).then(
                         function (data) {
                             resolve(data);
-                        },
-                        repoErrorHandler(reject)
-                    );
+                        }, function (xhr) {
+                            errorHandler(xhr, reject)
+                        })
                 }
             });
         },
@@ -117,8 +116,9 @@ function Repository(url) {
                         localStore.add(data);
                         resolve(data);
                     },
-                    repoErrorHandler(reject)
-                );
+                    function (xhr) {
+                        errorHandler(xhr, reject)
+                    });
             });
         },
 
@@ -129,8 +129,9 @@ function Repository(url) {
                         localStore.update(id, itemFromServer);
                         resolve(itemFromServer);
                     },
-                    repoErrorHandler(reject)
-                );
+                    function (xhr) {
+                        errorHandler(xhr, reject)
+                    });
             });
         },
 
@@ -141,8 +142,9 @@ function Repository(url) {
                         localStore.delete(id);
                         resolve();
                     },
-                    repoErrorHandler(reject)
-                )
+                    function (xhr) {
+                        errorHandler(xhr, reject)
+                    });
             });
 
         },
@@ -166,30 +168,14 @@ var defaults = {
 var ajaxPromise = function (ajaxUrl, ajaxSetting) {
     return new Promise(function (resolve, reject) {
         $.ajax(ajaxUrl, ajaxSetting).done(resolve).error(function (xhr) {
-            errorHandler(reject, xhr)
+            reject(xhr);
         });
     });
 };
 
-var repoErrorHandler = function (error) {
-    alert(error);
-};
-var errorHandler = function (xhr,reject) {
-    var errorCode = xhr.status;
-    var errorMessage = xhr.responseJSON.error;
-
-    if (errorCode == "409") {
-        reject(function () {
-            return errorMessage;
-        })
-    } else {
-        reject(function () {
-            return "Server Error";
-        })
-    }
+var errorHandler = function (xhr, reject) {
+    var errorMessage = xhr.responseJSON.message;
+    reject(errorMessage);
 };
 
-function RecurringRepository() {
-    var data = [{"id": 1, "catId": 1, "amount": 300, "day": 22, "tag": "Salary"}];
-}
 
