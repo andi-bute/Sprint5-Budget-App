@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BudgetAnts</title>
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css"  href="css/main.css">
 </head>
 <body>
     <div class="container-fluid content">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top nav-container">
                 <img alt="Logo" src="images/BudgetAnts2.gif" class="logo">
-                <a href="#" class="btn btn-logout btn-teal transition">Log Out</a>
-            </div>
+                <a href="#" class="btn btn-logout">Log Out</a>
         </nav>
+        <div class="row">
+            <div  class="col-md-12 col-md-offset-4" role="navigation">
+                <ul class="nav nav-pills pills">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation"><a href="#">Manage categories</a></li>
+                    <li role="presentation"><a href="#">Manage recurrings</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="row">
            <div class="col-md-6">
                 <div class="budget">
@@ -38,7 +45,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4">
                 <form class="form1">
                     <div class="form-group">
                         <label for="inputTag">Tag</label>
@@ -76,25 +83,29 @@
                     </label>
                 </form>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-8">
                 <table class="table table-bordered table-striped">
                     <thead>
-                        <tr>
-                            <th><a href="#">Tag <i class="fa fa-fw fa-sort"></i></a></th>
-                            <th><a href="#">Category <i class="fa fa-fw fa-sort"></i></a></th>
-                            <th><a href="#">Amount <i class="fa fa-fw fa-sort"></i></a></th>
-                            <th><a href="#">Date <i class="fa fa-fw fa-sort"></i></a></th>
-                            <th><a href="#">Actions </a></th>
-                        </tr>
+                    <tr>
+                        <th><a href="#">Tag <i class="fa fa-fw fa-sort"></i></a></th>
+                        <th><a href="#">Category <i class="fa fa-fw fa-sort"></i></a></th>
+                        <th><a href="#">Amount <i class="fa fa-fw fa-sort"></i></a></th>
+                        <th><a href="#">Date <i class="fa fa-fw fa-sort"></i></a></th>
+                        <th><a href="#">Actions </a></th>
+                    </tr>
                     </thead>
                     <tbody>
-
                     </tbody>
                 </table>
+                <nav>
+                    <ul class="pager">
+                        <li><a href="#">Previous</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
+
     </div>
     <script type="text/html" id="tpl">
         <tr data-id="<%=id%>">
