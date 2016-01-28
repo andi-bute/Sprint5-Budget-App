@@ -34,7 +34,7 @@ var onSubmit = function(){
                     var data = {
                             tag: $('#inputTag').val(),
                             catId: el.id,
-                            amount: $('#inputAmount').val(),
+                            amount: parseInt($('#inputAmount').val(),10),
                             date: $('#inputDate').val()
                         };
                     transactionsRepository.add(data).then(function() {
@@ -44,7 +44,6 @@ var onSubmit = function(){
                 }
         });
     });
-
     return false;
 };
 
@@ -69,13 +68,13 @@ var editClicked = function() {
         DOMparentTr.find('.transaction-table-tag').replaceWith("<input class='edit-transaction-input-tag' type='text' value='" + editingObject.tag + "'/>");
         DOMparentTr.find('.transaction-table-amount').replaceWith("<input class='edit-transaction-input-amount' type='text' value='" + editingObject.amount + " RON'/>");
         DOMparentTr.find('.transaction-table-date').replaceWith("<input class='edit-transaction-input-date' type='text' value='" + editingObject.date + "'/>"); 
-    })
+    });
 
     DOMparentTr.find('.delete').fadeOut();
     DOMparentTr.find('.edit').fadeOut(function() {
         DOMparentTr.find('.edit-accept').fadeIn();
         DOMparentTr.find('.edit-cancel').fadeIn();
-    })
+    });
 
     return false;
 };
@@ -102,10 +101,10 @@ var editClickedAccept = function() {
     DOMparentTr.find('.edit-accept').fadeOut(function() {
         DOMparentTr.find('.delete').fadeIn();
         DOMparentTr.find('.edit').fadeIn();
-    })
+    });
 
     return false;
-}
+};
 
 var editClickedCancel = function() {
     var DOMparentTr = $(this).closest('tr');
@@ -119,10 +118,10 @@ var editClickedCancel = function() {
     DOMparentTr.find('.edit-accept').fadeOut(function() {
         DOMparentTr.find('.delete').fadeIn();
         DOMparentTr.find('.edit').fadeIn();
-    })
+    });
 
     return false;
-}
+};
 
 var resetForm = function (){
     $('#catSelect').val("");
