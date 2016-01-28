@@ -44,6 +44,9 @@ body {
     background-color: #ffffff;
     padding:30px;
 }
+.btn {
+    display: inline;
+}
 .btn-logout {
     float:right;
     top:50px;
@@ -68,7 +71,7 @@ body {
     border-color: #1DE9B6;
     outline: none;
 }
-.edit-update-input {
+.edit-budget-input {
     border: none;
     display: inline;
     text-align: center;
@@ -85,4 +88,19 @@ body {
 }
 .inline {
     display: inline;
+}
+.edit-transaction-input-tag,
+.edit-transaction-input-category,
+.edit-transaction-input-amount,
+.edit-transaction-input-date {
+    border: none;
+    display: inline;
+    text-align: center;
+    margin: -2px auto -2px auto;
+    outline-color: #5bc0de;
+    background-color: transparent;
+    width: 100%;
+}
+.highlight-tr {
+    border: 3px solid #5bc0de;
 }

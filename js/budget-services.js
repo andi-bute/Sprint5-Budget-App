@@ -1,8 +1,3 @@
-var DOMbudgetBox = $('#budget-box');
-var DOMeditBudgetBtn = $('#btn-edit-budget');
-var DOMacceptEditBudgetBtn = $('#btn-accept-edit-budget');
-var DOMcancelEditBudgetBtn = $('#btn-cancel-edit-budget');
-
 var displayBudget = function() {
 	budgetRepository.get().then(function(data) {
 		$('#budget-box').text(data);
@@ -24,17 +19,17 @@ var enableModifyBudget = function() {
 	    DOMcancelEditBudgetBtn.fadeIn(function () {
 	    	DOMcancelEditBudgetBtn.addClass("transition");
 	     	var budget = $('#budget-box').text();
-			$('#budget-box').replaceWith("<input class='edit-update-input' type='text' value='" + budget + "'/>");
+			$('#budget-box').replaceWith("<input class='edit-budget-input' type='text' value='" + budget + "'/>");
 			fluidizeInput();
-			$('.edit-update-input').focus();
+			$('.edit-budget-input').focus();
 	    });  
 	})
 }
 
 var acceptModifiedBudget = function() {
-	updateBudget("set", parseFloat($('.edit-update-input').val()));
-	var budget = $('.edit-update-input').val();
-	$('.edit-update-input').replaceWith("<h3 class='inline stable-width' id='budget-box'>" + budget + "</h3>");
+	updateBudget("set", parseFloat($('.edit-budget-input').val()));
+	var budget = $('.edit-budget-input').val();
+	$('.edit-budget-input').replaceWith("<h3 class='inline stable-width' id='budget-box'>" + budget + "</h3>");
   	DOMacceptEditBudgetBtn.removeClass("transition");
   	DOMcancelEditBudgetBtn.removeClass("transition");
   	DOMacceptEditBudgetBtn.fadeOut(function() {
@@ -47,7 +42,7 @@ var acceptModifiedBudget = function() {
 
 var cancelModifiedBudget = function() {
 	budgetRepository.get().then(function(data) {
-  		$('.edit-update-input').replaceWith("<h3 class='inline stable-width' id='budget-box'>" + data + "</h3>");
+  		$('.edit-budget-input').replaceWith("<h3 class='inline stable-width' id='budget-box'>" + data + "</h3>");
   	})
   	DOMacceptEditBudgetBtn.removeClass("transition");
   	DOMcancelEditBudgetBtn.removeClass("transition");
@@ -60,14 +55,16 @@ var cancelModifiedBudget = function() {
 }
 
 var fluidizeInput = function() {
-	var newwidth = (($('.edit-update-input').val().length) * 13.2) + 2 + 'px';
-	$('.edit-update-input').css("width", newwidth);
+	var newwidth = (($('.edit-budget-input').val().length) * 13.2) + 'px';
+	$('.edit-budget-input').css("width", newwidth);
 }
 
-$(document).ready(function() {
-	displayBudget();
-	DOMeditBudgetBtn.on('click', enableModifyBudget);
-	DOMacceptEditBudgetBtn.on('click', acceptModifiedBudget);
-	DOMcancelEditBudgetBtn.on('click', cancelModifiedBudget);
-	$('.budget').on('keyup', '.edit-update-input', fluidizeInput);
-});
+var initializeBudget = function() {
+	transactionsRepository.getAll().then(function(data) {
+		var sum = 0;
+		$.each(data, function(index) {
+			sum = sum + data[index].amount;
+		})
+		updateBudget("set", sum);
+	})
+}

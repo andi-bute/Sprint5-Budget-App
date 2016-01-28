@@ -1,6 +1,6 @@
 var budgetRepository = (function () {
 
-    var data = 2000;
+    var data = 0;
 
     return {
         get: function() {
