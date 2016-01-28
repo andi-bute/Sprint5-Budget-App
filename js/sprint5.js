@@ -10,7 +10,7 @@ var drawTable = function (transactionsRepository){
                     id: element.id,
                     name: category.name,
                     tag: element.tag,
-                    amount: Math.abs(element.amount),
+                    amount: element.amount,
                     date: element.date
                 }));
                 $tbody.append(tr);
@@ -30,7 +30,7 @@ var onSubmit = function(){
                     var data = {
                             tag: $('#inputTag').val(),
                             catId: el.id,
-                            amount: $('#inputAmount').val(),
+                            amount: parseInt($('#inputAmount').val(),10),
                             date: $('#inputDate').val()
                         };
                     transactionsRepository.add(data).then(function() {
@@ -40,7 +40,6 @@ var onSubmit = function(){
                 }
         });
     });
-
     return false;
 };
 
