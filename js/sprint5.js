@@ -1,4 +1,4 @@
-var DOMtable = $('table').find('tbody');
+var DOMtransactionsTable = $('.transactions-table').find('tbody');
 var DOMbudgetBox = $('#budget-box');
 var DOMeditBudgetBtn = $('#btn-edit-budget');
 var DOMacceptEditBudgetBtn = $('#btn-accept-edit-budget');
@@ -8,7 +8,7 @@ var editingObject = null;
 
 var drawTable = function (transactionsRepository){
     transactionsRepository.getAll().then(function(data){
-        DOMtable.empty();
+        DOMtransactionsTable.empty();
         $.each(data, function(index,element) {
             categoriesRepository.get(element.catId).then(function(category){
                 var tr = (tmpl("tpl", {
@@ -18,7 +18,7 @@ var drawTable = function (transactionsRepository){
                     amount: element.amount,
                     date: element.date
                 }));
-                DOMtable.append(tr);
+                DOMtransactionsTable.append(tr);
             });
 
         });
@@ -129,10 +129,41 @@ var resetForm = function (){
     $('#inputAmount').val("");
     $('#inputDate').val("");
 };
+var addRecurring = function (){
+
+    if ($(this).is(':checked')) {
+        var catInput = $('#catSelect').val();
+        updateBudget("calculate", parseFloat($('#inputAmount').val()));
+        categoriesRepository.getAll().then(function(data){
+            $.each(data, function(index, el) {
+                if (catInput == el.name) {
+                    var data = {
+                        tag: $('#inputTag').val(),
+                        catId: el.id,
+                        amount: parseInt($('#inputAmount').val(),10),
+                        date: $('#inputDate').val()
+                    };
+                    console.log(data);
+                    //recurringRepository.add(data).then(function() {
+                    //    console.log(data);
+                    //});
+                }
+            });
+        });
+        return false;
+
+    }
+};
 
 $(document).ready(function() {
     $('form').submit(onSubmit);
+    $('#recurringInput').change(addRecurring);
     drawTable(transactionsRepository);
+
+    $('.tabs a').click(function(event){
+        event.preventDefault();
+        $(this).tab('show');
+    });
 
     initializeBudget();
     DOMeditBudgetBtn.on('click', enableModifyBudget);
@@ -140,8 +171,8 @@ $(document).ready(function() {
     DOMcancelEditBudgetBtn.on('click', cancelModifiedBudget);
     $('.budget').on('keyup', '.edit-budget-input', fluidizeInput);
 
-    DOMtable.on('click', 'a.delete', deleteClicked);
-    DOMtable.on('click', 'a.edit', editClicked);
-    DOMtable.on('click', 'a.edit-accept', editClickedAccept);
-    DOMtable.on('click', 'a.edit-cancel', editClickedCancel);
+    DOMtransactionsTable.on('click', 'a.delete', deleteClicked);
+    DOMtransactionsTable.on('click', 'a.edit', editClicked);
+    DOMtransactionsTable.on('click', 'a.edit-accept', editClickedAccept);
+    DOMtransactionsTable.on('click', 'a.edit-cancel', editClickedCancel);
 });
