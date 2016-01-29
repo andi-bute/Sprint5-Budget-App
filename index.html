@@ -14,124 +14,134 @@
     <nav class="navbar navbar-default navbar-fixed-top nav-container">
         <img alt="Logo" src="images/BudgetAnts2.gif" class="logo">
         <img src="images/load.gif" alt="" id="loadGif">
-        <a href="#" class="btn btn-logout pull-right">Log Out</a>
+        <a href="#" class="btn btn-logout">Log Out</a>
     </nav>
-    <span class="pull-right"><p>Synchronizing</p></span>
     <div class="row">
         <div class="col-md-12 col-md-offset-4" role="navigation">
             <ul class="nav nav-pills pills">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">Manage categories</a></li>
-                <li role="presentation"><a href="#">Manage recurrings</a></li>
+                <li role="presentation" class="active tabs"><a href="#home" data-toggle="pill">Home</a></li>
+                <li role="presentation" class="tabs"><a href="#cat-tab" data-toggle="pill">Manage categories</a></li>
+                <li role="presentation" class="tabs"><a href="#rec-tab" data-toggle="pill">Manage recurrings</a></li>
             </ul>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="budget">
-                <h1>CURRENT BUDGET</h1>
-                <h3 class="inline" id="budget-box"></h3>
-                <h3 class="inline">RON</h3>
-                <p>19 January 2016</p>
-                <button id="btn-edit-budget" class="btn btn-teal transition">Edit Budget</button>
-                <button id="btn-accept-edit-budget" class="btn btn-teal undisplayed">Accept</button>
-                <button id="btn-cancel-edit-budget" class="btn btn-teal undisplayed">Cancel</button>
+        <div class="tab-content col-md-10 col-lg-offset-1">
+            <div role="tabpanel" class="tab-pane fade in active" id="home">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="budget">
+                            <h1>CURRENT BUDGET</h1>
+                            <h3 class="inline" id="budget-box"></h3>
+                            <h3 class="inline">RON</h3>
+                            <p>19 January 2016</p>
+                            <button id="btn-edit-budget" class="btn btn-teal transition">Edit Budget</button>
+                            <button id="btn-accept-edit-budget" class="btn btn-teal undisplayed">Accept</button>
+                            <button id="btn-cancel-edit-budget" class="btn btn-teal undisplayed">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="expenses">
+                            <h1>EXPENSES</h1>
+                            <h3>500 RON</h3>
+                            <p>19 January 2016</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form class="form1">
+                            <div class="form-group">
+                                <label for="inputTag">Tag</label>
+                                <input type="text" id="inputTag" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="catSelect">Category</label>
+                                <select id="catSelect" class="form-control">
+                                    <option>Select a category</option>
+                                    <option>Food</option>
+                                    <option>Transport</option>
+                                    <option>Clothing</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAmount">Amount</label>
+                                <input type="text" id="inputAmount" class="form-control"/>
+                            </div>
+                            <div class="form-group category-type">
+                                <label for="category-type">
+                                    <input type="checkbox" id="category-type" checked/>
+                                </label>
+                                <p class="expense-label">Income/Expense</p>
+                                <!--<p class="expense-label">Expense</p>-->
+                                <!--<p class="income-label">Income</p>-->
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDate">Date</label>
+                                <input type="date" id="inputDate" class="form-control"/>
+                            </div>
+                            <input type="submit" value="Add" class="btn btn-primary btn-teal transition"/>
+                            <label>
+                                <input type="checkbox" id="recurringInput"/>
+                                <span id="recurringSpan">Save as recurring</span>
+                            </label>
+                        </form>
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table table-bordered table-striped transactions-table">
+                            <thead>
+                            <tr>
+                                <th><a href="#">Tag <i class="fa fa-fw fa-sort"></i></a></th>
+                                <th><a href="#">Category <i class="fa fa-fw fa-sort"></i></a></th>
+                                <th><a href="#">Amount <i class="fa fa-fw fa-sort"></i></a></th>
+                                <th><a href="#">Date <i class="fa fa-fw fa-sort"></i></a></th>
+                                <th><a href="#">Actions </a></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        <nav>
+                            <ul class="pager">
+                                <li><a href="#">Previous</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="cat-tab"><h1>WOOOOOOOOOOOW</h1>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="rec-tab">
+                <h1>BooooaaaaOOOOW</h1>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="expenses">
-                <h1>EXPENSES</h1>
-                <h3>500 RON</h3>
-                <p>19 January 2016</p>
-            </div>
-        </div>
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            <form class="form1">
-                <div class="form-group">
-                    <label for="inputTag">Tag</label>
-                    <input type="text" id="inputTag" class="form-control"/>
+    <script type="text/html" id="tpl">
+        <tr data-id="<%=id%>">
+            <td><span class="transaction-table-tag"><%=tag%></span></td>
+            <td><span class="transaction-table-category"><%=name%></span></td>
+            <td><span class="transaction-table-amount"><%=amount%> RON</span></td>
+            <td><span class="transaction-table-date"><%=date%></span></td>
+            <td>
+                <div>
+                    <a href="#" class="btn btn-info edit">Edit</a>
+                    <a href="#" class="btn btn-default btn-danger delete">Delete</a>
+                    <a href="#" class="btn btn-info edit-accept undisplayed">Accept</a>
+                    <a href="#" class="btn btn-default btn-danger edit-cancel undisplayed">Cancel</a>
                 </div>
-                <div class="form-group">
-                    <label for="catSelect">Category</label>
-                    <select id="catSelect" class="form-control">
-                        <option>Select a category</option>
-                        <option>Food</option>
-                        <option>Transport</option>
-                        <option>Clothing</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="inputAmount">Amount</label>
-                    <input type="text" id="inputAmount" class="form-control"/>
-                </div>
-                <div class="form-group category-type">
-                    <label for="category-type">
-                        <input type="checkbox" id="category-type" checked/>
-                    </label>
-                    <p class="expense-label">Income/Expense</p>
-                    <!--<p class="expense-label">Expense</p>-->
-                    <!--<p class="income-label">Income</p>-->
-                </div>
-                <div class="form-group">
-                    <label for="inputDate">Date</label>
-                    <input type="date" id="inputDate" class="form-control"/>
-                </div>
-                <input type="submit" value="Add" class="btn btn-primary btn-teal transition"/>
-                <label>
-                    <input type="checkbox" id="recurringInput"/>
-                    <span id="recurringSpan">Save as recurring</span>
-                </label>
-            </form>
-        </div>
-        <div class="col-md-8">
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th><a href="#">Tag <i class="fa fa-fw fa-sort"></i></a></th>
-                    <th><a href="#">Category <i class="fa fa-fw fa-sort"></i></a></th>
-                    <th><a href="#">Amount <i class="fa fa-fw fa-sort"></i></a></th>
-                    <th><a href="#">Date <i class="fa fa-fw fa-sort"></i></a></th>
-                    <th><a href="#">Actions </a></th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-            <nav>
-                <ul class="pager">
-                    <li><a href="#">Previous</a></li>
-                    <li><a href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-</div>
-<script type="text/html" id="tpl">
-    <tr data-id="<%=id%>">
-        <td><span class="transaction-table-tag"><%=tag%></span></td>
-        <td><span class="transaction-table-category"><%=name%></span></td>
-        <td><span class="transaction-table-amount"><%=amount%> RON</span></td>
-        <td><span class="transaction-table-date"><%=date%></span></td>
-        <td>
-            <div>
-                <a href="#" class="btn btn-info edit">Edit</a>
-                <a href="#" class="btn btn-default btn-danger delete">Delete</a>
-                <a href="#" class="btn btn-info edit-accept undisplayed">Accept</a>
-                <a href="#" class="btn btn-default btn-danger edit-cancel undisplayed">Cancel</a>
-            </div>
-        </td>
-    </tr>
-</script>
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/AbstractRepository.js"></script>
-<script src="js/categoriesRepository.js"></script>
-<script src="js/transactionsRepository.js"></script>
-<script src="js/budgetRepository.js"></script>
-<script src="js/template-engine.js"></script>
-<script src="js/budget-services.js"></script>
-<script src="js/sprint5.js"></script>
+            </td>
+        </tr>
+    </script>
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/AbstractRepository.js"></script>
+    <script src="js/load.js"></script>
+    <script src="js/categoriesRepository.js"></script>
+    <script src="js/transactionsRepository.js"></script>
+    <script src="js/recurringRepository.js"></script>
+    <script src="js/budgetRepository.js"></script>
+    <script src="js/budget-services.js"></script>
+    <script src="js/template-engine.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/sprint5.js"></script>
 </body>
 </html>

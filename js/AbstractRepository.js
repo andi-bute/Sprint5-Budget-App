@@ -98,7 +98,7 @@ function RemoteStore(url) {
             return ajaxPromise(url, $.extend({}, defaults, {data: JSON.stringify(settings)}));
         },
         add: function (item) {
-            var requestSettings = $.extend({}, defaults, {type: "POST", data: JSON.stringify(item)});
+            var requestSettings = $.extend({}, defaults, {type: "PUT", data: JSON.stringify(item)});
             return ajaxPromise(url, requestSettings);
         },
         update: function (id, updateData) {
