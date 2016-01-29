@@ -1,4 +1,5 @@
 var DOMtransactionsTable = $('.transactions-table').find('tbody');
+var DOMrecurringTable = $('.recurring-table').find('tbody');
 var DOMbudgetBox = $('#budget-box');
 var DOMeditBudgetBtn = $('#btn-edit-budget');
 var DOMacceptEditBudgetBtn = $('#btn-accept-edit-budget');
@@ -24,7 +25,24 @@ var drawTable = function (transactionsRepository){
         });
     });
 };
+var drawRecurringsTable = function (recurringRepository){
+    recurringRepository.getAll().then(function(data){
+        DOMrecurringTable.empty();
+        $.each(data, function(index,element) {
+            categoriesRepository.get(element.catId).then(function(category){
+                var tr = (tmpl("tpl_recurrings", {
+                    id: element.id,
+                    name: category.name,
+                    tag: element.tag,
+                    amount: element.amount,
+                    day: element.day
+                }));
+                DOMrecurringTable.append(tr);
+            });
 
+        });
+    });
+};
 var onSubmit = function(){
     var catInput = $('#catSelect').val();
     updateBudget("calculate", parseFloat($('#inputAmount').val()));
@@ -43,7 +61,7 @@ var onSubmit = function(){
                     });
                 }
         });
-    });
+    }, function(error){alert(error)});
     return false;
 };
 
@@ -128,11 +146,14 @@ var resetForm = function (){
     $('#inputTag').val("");
     $('#inputAmount').val("");
     $('#inputDate').val("");
+    $('#recurringInput').prop('checked', false);
 };
 var addRecurring = function (){
 
     if ($(this).is(':checked')) {
         var catInput = $('#catSelect').val();
+        var date = $('#inputDate').val().split('-');
+
         updateBudget("calculate", parseFloat($('#inputAmount').val()));
         categoriesRepository.getAll().then(function(data){
             $.each(data, function(index, el) {
@@ -141,17 +162,18 @@ var addRecurring = function (){
                         tag: $('#inputTag').val(),
                         catId: el.id,
                         amount: parseInt($('#inputAmount').val(),10),
-                        date: $('#inputDate').val()
+                        day: parseInt(date[2])
                     };
-                    console.log(data);
-                    //recurringRepository.add(data).then(function() {
-                    //    console.log(data);
-                    //});
+                    recurringRepository.add(data).then(function() {
+                        drawRecurringsTable(recurringRepository);
+                        resetForm();
+                    });
                 }
             });
         });
         return false;
-
+    }else {
+        resetForm();
     }
 };
 
@@ -164,6 +186,8 @@ $(document).ready(function() {
         event.preventDefault();
         $(this).tab('show');
     });
+
+    $('#rec-tab').click(drawRecurringsTable(recurringRepository));
 
     initializeBudget();
     DOMeditBudgetBtn.on('click', enableModifyBudget);

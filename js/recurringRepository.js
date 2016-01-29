@@ -1,5 +1,6 @@
 var recurringRepository = (function () {
 
+    var id = 2;
     var data = [
 
         {"id":1, "catId":1, "amount": 300, "day":22 , "tag":"Salary"},
