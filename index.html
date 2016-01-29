@@ -4,34 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BudgetAnts</title>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Numeric JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/roxana-main.css">
     <link rel="stylesheet" type="text/css" href="css/style2.css">
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+
 </head>
 <body>
 <div class="container-fluid content">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <img alt="Logo" src="images/BudgetAnts2.gif" class="logo">
-            <!--<ul>-->
-            <!--<li>Manage Categories</li>-->
-            <!--<li>Log Out</li>-->
-            <!--</ul>-->
-            <!--<a href="#" class="btn btn-primary logoutBtn">Log Out</a>-->
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="true">
-                    Dropdown
+                    My Account
                     <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="menu">
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        Edit Category
+                    </a>
+                    </li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-scissors" aria-hidden="true"></span>
+                        Delete Category
+                    </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span>
+                        Statistics
+                    </a>
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">
+                        <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                        Logout
+                    </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -42,7 +62,6 @@
                 <h1>BUDGET</h1>
                 <h3>2000 RON</h3>
                 <p>19 January 2016</p>
-                <!--<button class="btn btn-success">New income</button>-->
             </div>
         </div>
         <div class="col-md-6">
@@ -53,7 +72,66 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div id="statistics" class="hidden">
+        <div class="container">
+            <div class="income" id="inc"></div>
+            <div class="cheltuieli" id="chelt"></div>
+            <input type="submit" value="Close" class="btn btn-primary" id="closebutton"/>
+        </div>
+    </div>
+    <div id="managecat" class="hidden">
+        <div id="deletecategory" class="hidden">
+            <ul>
+                <li>Food</li>
+                <li>Drink</li>
+                <li>Cloths</li>
+                <li>Furniture</li>
+                <li>Technolgie</li>
+                <li>Vacante</li>
+                <li>Chirie</li>
+            </ul>
+            <div id="icon">
+                <img src="images/recycle6.png">
+                <img src="images/full28.png" class="hidden">
+            </div>
+            <input type="submit" value="Close" class="btn btn-primary" id="closepage"/>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <form class="form1">
+                <div class="form-group">
+                    <label for="catSelect1">Category</label>
+                    <select id="catSelect1" class="form-control">
+                        <option value="Groceries">Food</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Entertainment">Entertainment</option>
+                    </select>
+                </div>
+                <div class="radiobtn">
+                    <span>Type:</span>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio" checked="checked">Income</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="optradio">Expense</label>
+                    </div>
+                </div>
+                <div class="form-group form-inline">
+                    <label for="limit">Set Limit: </label>
+                    <div class="radio" id="yes">
+                        <label><input type="radio" name="optradio1" checked="checked">Yes</label>
+                    </div>
+                    <div class="radio" id="no">
+                        <label><input type="radio" name="optradio1">No</label>
+                    </div>
+                    <input type="text" id="limit" class="form-control"/>
+                </div>
+                <input type="submit" value="Save" class="btn btn-primary" id="savebtn"/>
+                <input type="submit" value="Delete category" class="btn btn-primary" id="deletebtn"/>
+                <input type="submit" value="Close" class="btn btn-primary" id="closebtn"/>
+            </form>
+        </div>
+    </div>
+    <div class="row" id="inputform">
         <div class="col-md-6 col-md-offset-3">
             <form class="form1">
                 <div class="form-group">
@@ -62,8 +140,6 @@
                 </div>
                 <div class="form-group">
                     <label for="catSelect">Category</label>
-                    <!--<a href="#" class="btn btn-primary ">Manage</a>-->
-                    <!--<div class="managecategorybuton">Manage Categories</div>-->
                     <select id="catSelect" class="form-control">
                         <option value="Groceries">Food</option>
                         <option value="Transport">Transport</option>
@@ -128,22 +204,13 @@
     </tr>
 </script>
 <script src="js/jquery-2.1.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#catSelect").change(function (ev) {
-            if ($(ev.target).val() == "newone") {
-                var categorie = prompt("Add new category", "Food");
-                $('#catSelect').prepend("<option>" + categorie + "</option>");
-//                alert(categorie);
-            }
-        });
-    });
-</script>
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/categoriesRepository.js"></script>
-<script src="js/transactionsRepository.js"></script>
+<!--<script src="js/categoriesRepository.js"></script>-->
+<script src="js/categoriesRepositoryFlorin.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!--<script src="js/recurringRepository.js"></script>-->
 <script src="js/template-engine.js"></script>
-<script src="js/sprint5.js"></script>
+<script src="js/CategoryHandler.js"></script>
+<script src="js/statistics.js"></script>
+<!--<script src="js/sprint5.js"></script>-->
 </body>
 </html>

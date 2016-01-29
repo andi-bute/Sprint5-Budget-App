@@ -1,14 +1,104 @@
-#newone{
-    color:red;
+#newone {
+    color: red;
 }
-.managecategorybuton{
-    display:inline;
-    font-weight:bold;
+
+#dropdownMenu1 {
+    position: absolute;
+    margin-top: 10px;
+    width: 160px;
+    left: 87%;
+    background-color: #1b6d85;
 }
-/*#nav{*/
-    /*float:right;*/
-    /*list-style: none;*/
-/*}*/
-#ttt{
-    float:right;
+
+#dropdownMenu1:hover {
+    background-color: #2aabd2;
+}
+
+#menu {
+    float: right;
+}
+
+.dropdown-menu {
+    float: right;
+    left: 87%;
+    top: 40px;
+    font-size: 15px;
+}
+
+.radio {
+    display: inline-block;
+}
+
+.radiobtn span {
+    font-weight: bold;
+}
+
+#managecat {
+    padding: 30px;
+}
+
+#managecat .form1 {
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+#closebutton {
+    float: right;
+}
+
+#closebtn {
+    float: right;
+}
+
+#statistics {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+
+.income {
+    float: left;
+    display: inline-block;
+    width: 50%;
+}
+
+.cheltuieli {
+    float: right;
+    display: inline-block;
+    width: 50%;
+}
+
+.container {
+    margin: 0 auto;
+}
+
+#deletecategory {
+    text-align: center;
+    background-color: #3fb0ac;
+}
+
+#deletecategory ul {
+    list-style: none;
+}
+
+#deletecategory ul li {
+    padding: 5px 10px;
+    background-color: #fae596;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+    color: #173e43;
+}
+
+#closepage {
+    background-color: #fae596;
+    float: right;
+    margin-top: 5px;
+
 }

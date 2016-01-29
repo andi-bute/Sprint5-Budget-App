@@ -34,9 +34,6 @@ thead {
     width: 99%;
 }
 
-/*body {*/
-/*background-color: #BDBDBD;*/
-/*}*/
 .navbar {
     height: 80px;
     background-color: #ffffff;
@@ -55,6 +52,7 @@ body {
 .form1 {
     background-color: #ffffff;
     padding: 30px;
+    /*margin:30px;*/
 }
 
 .logoutBtn {
