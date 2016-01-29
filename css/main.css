@@ -274,3 +274,8 @@ body {
 .highlight-tr {
     border: 3px solid #5bc0de;
 }
+
+#loadGif{
+    margin-top:12px;
+    margin-left:10px;
+}

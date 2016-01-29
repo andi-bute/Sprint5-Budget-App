@@ -26,7 +26,7 @@ var errorHandler = function (xhr, reject) {
     if (xhr.readyState == 4) {
         var errorCode = xhr.status;
         var errorMessage;
-        
+
         if (xhr.responseJSON.message) {
             errorMessage = xhr.responseJSON.message;
         } else {
