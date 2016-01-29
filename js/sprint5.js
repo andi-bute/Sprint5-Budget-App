@@ -10,6 +10,7 @@ var DOMcancelEditBudgetBtn = $('#btn-cancel-edit-budget');
 
 var editingObject = null;
 
+categoriesRepository.getAll();
 var drawTable = function (transactionsRepository) {
     transactionsRepository.getAll().then(function (data) {
         DOMtransactionsTable.empty();
