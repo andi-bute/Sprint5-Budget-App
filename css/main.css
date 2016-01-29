@@ -31,11 +31,12 @@ thead {
     height:80px;
     background-color:#ffffff;
     margin-top:0;
+    padding:10px 30px 0 30px;
 }
 .logo {
     width:250px;
     float:left;
-    margin-top:10px;
+    top:50px;
 }
 body {
     padding-top:70px;
@@ -43,6 +44,7 @@ body {
 .form1{
     background-color: #ffffff;
     padding:30px;
+    margin-bottom:50px;
 }
 .btn {
     display: inline;
@@ -51,7 +53,11 @@ body {
     float:right;
     top:50px;
     transform:translateY(50%);
-    margin-top:10px;
+    background-color: white;
+    margin-top:5px;
+    color: #1DE9B6;
+    border-color: #1DE9B6;
+    outline: none;
 }
 
 .category-type {
@@ -70,7 +76,27 @@ body {
 .income-label {
     color: #6ADD75;
 }
-
+.pills>li {
+    background-color:#00BFA5;
+    text-align:center;
+    border-radius:5px;
+}
+.pills > li > a{
+    color:#fff;
+}
+.pills > li > a:hover, .pills > li.active > a:hover{
+    background-color: white;
+    color: #00BFA5;
+    border-color: #00BFA5;
+}
+.pills > li > a:focus, .pills > li.active > a:focus{
+    background-color: #fff;
+    color: #00BFA5;
+    border-color: #00BFA5;
+}
+.pills > li.active > a {
+    background-color: #009688;
+}
 /*------------------------RECURRING CHECKBOX-------------------------*/
 #recurringInput {
     display:none;
@@ -91,6 +117,7 @@ body {
     cursor:pointer;
     display:inline-block;
     margin-left:30px;
+    border:1px solid #5bc0de;
     -webkit-transition:background-color 150ms ease-in;
     -moz-transition:background-color 150ms ease-in;
     -ms-transition:background-color 150ms ease-in;
@@ -100,6 +127,7 @@ body {
 
 #recurringSpan:hover {
     background-color:#ff5847;
+    border:1px solid #ff5847;
 }
 
 #recurringInput:checked + #recurringSpan {
@@ -108,6 +136,7 @@ body {
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
     border-radius:4px;
+    border:1px solid #00E676;
     background:#00E676 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAaCAYAAACgoey0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAX9JREFUeNpi+P//PwMNsS4QbwBiLnQ5WlqqAsRP/0PARiBmoYfFkkB8+z8qWALEjLS0mB+IL/3HDibSymJQXB7/jx/UgNSCvU4lwAbEG4DYkwi1WUxUspQZiOcRaSkIWOAKMk0Sg3jaf+IBOIVjMyQWiH8DsR+RljaTYOkBWJ5GNwRk2R+ooh9A7ETA0jwSLL0ATfEYqRpkyVc0xR+A2AyHpdFA/I9IS0F5WhRbAWIEtQQbeAXE6lhC5jeRlj4GYgVsRaYK1HBCmmWgmuyxhAwu8BpaXjNgs/gYkYbcAGIXPCGDDkCOM8eVPkCEFhE+JhX8BGJnfAkTxgC57BOVLAXlihBC2RA9Vf+k0FJQKk8nJv+jCwQi5WNyQAWxpR02wRQS8icy6CKlmMUlUUGipfOQK3lKLAbhdhIKfWZS6258kiAfzCZg6V4gZiOn0UBIAcgn63BYehK50Ke2xQxQH+3FUoqJUtJMIlYhLxAfxVJu09xiWENuMxCrUaNhCBBgAOAVfjALa5TLAAAAAElFTkSuQmCC) no-repeat 5% center;
     background-size:25px;
 }
@@ -119,6 +148,7 @@ body {
     -webkit-border-radius:4px;
     -moz-border-radius:4px;
     border-radius:4px;
+    border:1px solid #dd5244;
     background:#dd5244 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAS5JREFUeNq8110OgjAMAGBGvIY3VESjt9jPg95PT+LccBIZ7dYOWJPGB+g+Ymg3hLW2QeLkcu/y2pSFdvl0eQevehjI3uXbfkMh96TShFq/xhG6J4faAtxEtSBOQTm4QWpnOBWl4CZT69fuYpiCpnBDrB1xLhrjgoFO8F1oGcFslUv4bV32zFoxmOHJta0XMn65dC0UaiddA8UGiN4axeC1cUkdmWviEls/NwL1FqjPNtNvoimPdC3yRCUTiTXbt0R/oSnw2iiK10BBvBY6w2uiE3xJr8oFtcrvxy/fVcyeVdGx98yotcOxN/znHeMUIhdMOG8c4reagssF43VEoT5O4ZJwvNUUFJtcEE5BMXyGpnanf5yDxjiI+hSJj7YunEBvhbuTCh9tD+jiR4ABAJ0SrJgNr1UAAAAAAElFTkSuQmCC) no-repeat 5% center;
     background-size:23px;
 }
@@ -194,21 +224,21 @@ body {
     -o-transition: all 0.3s ease;
 }
 .btn-teal {
-    background-color: #1DE9B6;
-    border-color: #1DE9B6;
+    background-color: #009688;
+    border-color: #009688;
     outline: none;
     color: white;
 }
 .btn-teal:hover {
     background-color: white;
-    color: #1DE9B6;
-    border-color: #1DE9B6;
+    color: #009688;
+    border-color: #009688;
     outline: none;
 }
 .btn-teal:focus {
     background-color: white;
-    color: #1DE9B6;
-    border-color: #1DE9B6;
+    color: #009688;
+    border-color: #009688;
     outline: none;
 }
 .edit-budget-input {
@@ -217,7 +247,7 @@ body {
     text-align: center;
     margin: -2px auto -2px auto;
     font-size: 24px;
-    outline-color: #1DE9B6;
+    outline-color: #009688;
     width: 53.3px;
 }
 .undisplayed {
