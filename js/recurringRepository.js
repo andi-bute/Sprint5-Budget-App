@@ -3,7 +3,7 @@ var recurringRepository = (function () {
     var id = 2;
     var data = [
 
-        {"id":1, "catId":1, "amount": 300, "day":22 , "tag":"Salary"},
+        {"id":1, "catId":3, "amount": 300, "day":22 , "tag":"Salary"},
         {"id":2, "catId":4, "amount": -200, "day":10, "tag":"Internet Bill"}
     ];
 

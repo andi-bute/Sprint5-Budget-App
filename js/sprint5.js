@@ -75,7 +75,16 @@ var deleteClicked = function() {
 
     return false;
 };
+var recurringDeleteClicked = function() {
+    var id = $(this).closest('tr').data('id');
 
+    recurringRepository.delete(id).then(function() {
+        initializeBudget();
+        drawRecurringsTable(recurringRepository);
+    });
+
+    return false;
+};
 var editClicked = function() {
     var DOMparentTr = $(this).closest('tr');
     DOMparentTr.addClass("highlight-tr");
@@ -185,9 +194,8 @@ $(document).ready(function() {
     $('.tabs a').click(function(event){
         event.preventDefault();
         $(this).tab('show');
+        drawRecurringsTable(recurringRepository);
     });
-
-    $('#rec-tab').click(drawRecurringsTable(recurringRepository));
 
     initializeBudget();
     DOMeditBudgetBtn.on('click', enableModifyBudget);
@@ -199,4 +207,6 @@ $(document).ready(function() {
     DOMtransactionsTable.on('click', 'a.edit', editClicked);
     DOMtransactionsTable.on('click', 'a.edit-accept', editClickedAccept);
     DOMtransactionsTable.on('click', 'a.edit-cancel', editClickedCancel);
+
+    DOMrecurringTable.on('click', 'a.delete',recurringDeleteClicked);
 });
