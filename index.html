@@ -31,7 +31,9 @@
                                     <h1>CURRENT BUDGET</h1>
                                     <h3 class="inline" id="budget-box"></h3>
                                     <h3 class="inline">RON</h3>
-                                    <p>19 January 2016</p>
+                                    <div>
+                                        <p class="date-div"></p>
+                                    </div>
                                     <button id="btn-edit-budget" class="btn btn-teal transition">Edit Budget</button>
                                     <button id="btn-accept-edit-budget" class="btn btn-teal undisplayed">Accept</button>
                                     <button id="btn-cancel-edit-budget" class="btn btn-teal undisplayed">Cancel</button>
@@ -39,9 +41,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="expenses">
-                                    <h1>EXPENSES</h1>
-                                    <h3>500 RON</h3>
-                                    <p>19 January 2016</p>
+                                    <h1>CURRENT MONTH'S EXPENSES</h1>
+                                    <h3 class="inline" id="expenses-box"></h3>
+                                    <h3 class="inline">RON</h3>
+                                    <div>
+                                        <p class="date-div"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,6 +116,43 @@
                     <div role="tabpanel" class="tab-pane fade" id="rec-tab">
                         <h1>BooooaaaaOOOOW</h1>
                     </div>
+                    <div class="form-group category-type">
+                        <label for="category-type">
+                            <input type="checkbox" id="category-type" checked/>
+                        </label>
+                        <p class="expense-label">Income/Expense</p>
+                        <!--<p class="expense-label">Expense</p>-->
+                        <!--<p class="income-label">Income</p>-->
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate">Date</label>
+                        <input type="date" id="inputDate" class="form-control"/>
+                    </div>
+                    <input type="submit" value="Add" class="btn btn-primary btn-teal transition"/>
+                    <label>
+                        <input type="checkbox" id="recurringInput"/>
+                        <span id="recurringSpan">Save as recurring</span>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th><a href="#">Tag <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Category <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Amount <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Date <i class="fa fa-fw fa-sort"></i></a></th>
+                            <th><a href="#">Actions </a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <script type="text/html" id="tpl">
@@ -135,10 +177,11 @@
     <script src="js/transactionsRepository.js"></script>
     <script src="js/recurringRepository.js"></script>
     <script src="js/budgetRepository.js"></script>
-    <script src="js/budget-services.js"></script>
     <script src="js/template-engine.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/budget-services.js"></script>
+    <script src="js/date-services.js"></script>
     <script src="js/sprint5.js"></script>
 </body>
 </html>

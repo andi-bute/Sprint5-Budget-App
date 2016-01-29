@@ -3,6 +3,12 @@ var categoriesRepository = (function () {
        // private
     var data = [
         {
+            name: "Salary",
+            type: "Income",
+            limitation: Infinity,
+            id: 1
+        },
+        {
             name: "Transport",
             type: "Expenses",
             limitation: 500,

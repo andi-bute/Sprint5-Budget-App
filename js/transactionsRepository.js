@@ -5,23 +5,37 @@ var transactionsRepository = (function () {
         {
             id: 1,
             catId: 4,
-            amount: -15,
+            amount: -50,
             tag: 'RATB tickets',
             date: '2016-01-19'
         },
         {
             id: 2,
             catId: 2,
-            amount: -25,
+            amount: -40,
             tag: 'Pizza Lunch',
             date: '2016-01-15'
         },
         {
             id: 3,
             catId: 3,
-            amount: -50,
-            tag: 'T-shirt',
+            amount: -250,
+            tag: 'Shoes',
             date: '2016-01-13'
+        },
+        {
+            id: 4,
+            catId: 2,
+            amount: -100,
+            tag: 'New Year Dinner',
+            date: '2015-12-31'
+        },
+        {
+            id: 5,
+            catId: 1,
+            amount: +2000,
+            tag: 'January Salary',
+            date: '2016-01-04'
         }
     ];
 
@@ -85,41 +99,3 @@ var transactionsRepository = (function () {
         }
     };
 })();
-
-
-var consoleTransactions = function () {
-    repositoryTransactions.getAll().then(function (data) {
-        console.log(data);
-    })
-};
-
-var consoleTotal = function () {
-    repositoryTransactions.getTotal().then(function (total) {
-        console.log(total)
-    })
-};
-
-
-var getFormInfo = function () {
-    return {
-        amount: parseFloat($('#transactions-amount-input').val()),
-        tag: $('#transactions-tag-input').val(),
-        date: $('#transactions-date-input').val()
-    };
-};
-
-$(document).ready(function () {
-
-    $('#transactions-form').on('submit', function () {
-        repositoryTransactions.add(getFormInfo()).then(function () {
-            $('#transactions-form').find('input').not('[type="submit"]').val('');
-        });
-        repositoryTransactions.getAll().then(function (data) {
-            var $displays = $('#displays').empty();
-            $.each(data, function () {
-                $displays.append('<p><span>ID: ' + this.id + '</span><span>/// Amount: ' + this.amount + '</span><span>/// Tag: ' + this.tag + '</span><span>/// Date: ' + this.date + '</span></p>')
-            })
-        });
-        return false;
-    })
-});
