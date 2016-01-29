@@ -5,23 +5,37 @@ var transactionsRepository = (function () {
         {
             id: 1,
             catId: 4,
-            amount: -15,
+            amount: -50,
             tag: 'RATB tickets',
             date: '2016-01-19'
         },
         {
             id: 2,
             catId: 2,
-            amount: -25,
+            amount: -40,
             tag: 'Pizza Lunch',
             date: '2016-01-15'
         },
         {
             id: 3,
             catId: 3,
-            amount: -50,
-            tag: 'T-shirt',
+            amount: -250,
+            tag: 'Shoes',
             date: '2016-01-13'
+        },
+        {
+            id: 4,
+            catId: 2,
+            amount: -100,
+            tag: 'New Year Dinner',
+            date: '2015-12-31'
+        },
+        {
+            id: 5,
+            catId: 1,
+            amount: +2000,
+            tag: 'January Salary',
+            date: '2016-01-04'
         }
     ];
 

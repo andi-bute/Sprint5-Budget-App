@@ -25,6 +25,6 @@ var displayCurrentMonthExpenses = function() {
                sum = sum + data[index].amount; 
             }
         })
-        $('#expenses-box').text(sum);
+        $('#expenses-box').text(Math.abs(sum));
     })
 }
