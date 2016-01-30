@@ -94,7 +94,7 @@ var editClicked = function() {
         editingObject = data;
         DOMparentTr.find('.transaction-table-tag').replaceWith("<input class='edit-transaction-input-tag' type='text' value='" + editingObject.tag + "'/>");
         DOMparentTr.find('.transaction-table-amount').replaceWith("<input class='edit-transaction-input-amount' type='text' value='" + editingObject.amount + " RON'/>");
-        DOMparentTr.find('.transaction-table-date').replaceWith("<input class='edit-transaction-input-date' type='text' value='" + editingObject.date + "'/>"); 
+        DOMparentTr.find('.transaction-table-date').replaceWith("<input class='edit-transaction-input-date' type='text' value='" + editingObject.date + "'/>");
     });
 
     DOMparentTr.find('.delete').fadeOut();
@@ -121,7 +121,6 @@ var editClickedAccept = function() {
     transactionsRepository.update(id, editingObject).then(function() {
         initializeBudget();
     });
-
     editingObject = null;
 
     DOMparentTr.find('.edit-cancel').fadeOut();
@@ -185,6 +184,71 @@ var addRecurring = function (){
         resetForm();
     }
 };
+var recurringEditClicked = function(){
+    var DOMparentTr = $(this).closest('tr');
+    DOMparentTr.addClass("highlight-tr");
+    var id = DOMparentTr.data('id');
+
+    recurringRepository.get(id).then(function(data) {
+        editingObject = data;
+        DOMparentTr.find('.recurring-table-tag').replaceWith("<input class='edit-transaction-input-tag' type='text' value='" + editingObject.tag + "'/>");
+        DOMparentTr.find('.recurring-table-amount').replaceWith("<input class='edit-transaction-input-amount' type='text' value='" + editingObject.amount + " RON'/>");
+        DOMparentTr.find('.recurring-table-day').replaceWith("<input class='edit-transaction-input-date' type='text' value='" + editingObject.day + "'/>");
+    });
+
+    DOMparentTr.find('.delete').fadeOut();
+    DOMparentTr.find('.edit').fadeOut(function() {
+        DOMparentTr.find('.edit-accept').fadeIn();
+        DOMparentTr.find('.edit-cancel').fadeIn();
+    });
+
+    return false;
+};
+
+var recurringEditClickedAccept = function(){
+    var DOMparentTr = $(this).closest('tr');
+    DOMparentTr.removeClass("highlight-tr");
+    var id = DOMparentTr.data('id');
+
+    editingObject.tag = DOMparentTr.find('.edit-transaction-input-tag').val();
+    editingObject.amount = parseFloat(DOMparentTr.find('.edit-transaction-input-amount').val().split(" ")[0]);
+    editingObject.day = parseInt(DOMparentTr.find('.edit-transaction-input-date').val());
+    DOMparentTr.find('.edit-transaction-input-tag').replaceWith("<span class='recurring-table-tag'>" + editingObject.tag + "</span>");
+    DOMparentTr.find('.edit-transaction-input-amount').replaceWith("<span class='recurring-table-amount'>" + editingObject.amount + " RON</span>");
+    DOMparentTr.find('.edit-transaction-input-date').replaceWith("<span class='recurring-table-day'>" + editingObject.day + "</span>");
+
+    recurringRepository.update(id, editingObject).then(function() {
+        initializeBudget();
+    });
+
+    editingObject = null;
+
+    DOMparentTr.find('.edit-cancel').fadeOut();
+    DOMparentTr.find('.edit-accept').fadeOut(function() {
+        DOMparentTr.find('.delete').fadeIn();
+        DOMparentTr.find('.edit').fadeIn();
+    });
+
+    return false;
+
+};
+
+var recurringEditClickedCancel = function(){
+    var DOMparentTr = $(this).closest('tr');
+    DOMparentTr.removeClass("highlight-tr");
+
+    DOMparentTr.find('.edit-transaction-input-tag').replaceWith("<span class='transaction-table-tag'>" + editingObject.tag + "</span>");
+    DOMparentTr.find('.edit-transaction-input-amount').replaceWith("<span class='transaction-table-amount'>" + editingObject.amount + " RON</span>");
+    DOMparentTr.find('.edit-transaction-input-date').replaceWith("<span class='transaction-table-day'>" + editingObject.day + "</span>");
+
+    DOMparentTr.find('.edit-cancel').fadeOut();
+    DOMparentTr.find('.edit-accept').fadeOut(function() {
+        DOMparentTr.find('.delete').fadeIn();
+        DOMparentTr.find('.edit').fadeIn();
+    });
+
+    return false;
+};
 
 $(document).ready(function() {
     $('form').submit(onSubmit);
@@ -209,4 +273,7 @@ $(document).ready(function() {
     DOMtransactionsTable.on('click', 'a.edit-cancel', editClickedCancel);
 
     DOMrecurringTable.on('click', 'a.delete',recurringDeleteClicked);
+    DOMrecurringTable.on('click', 'a.edit', recurringEditClicked);
+    DOMrecurringTable.on('click', 'a.edit-accept', recurringEditClickedAccept);
+    DOMrecurringTable.on('click', 'a.edit-cancel', recurringEditClickedCancel);
 });

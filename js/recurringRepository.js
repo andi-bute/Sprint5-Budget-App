@@ -4,7 +4,9 @@ var recurringRepository = (function () {
     var data = [
 
         {"id":1, "catId":3, "amount": 300, "day":22 , "tag":"Salary"},
-        {"id":2, "catId":4, "amount": -200, "day":10, "tag":"Internet Bill"}
+        {"id":2, "catId":4, "amount": -200, "day":10, "tag":"Internet bill"},
+        {"id":3, "catId":2, "amount": -100, "day":15, "tag":"Electricity"},
+        {"id":4, "catId":4, "amount": 500, "day":13, "tag":"Part-time job"}
     ];
 
     return {
