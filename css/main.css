@@ -30,10 +30,6 @@ thead {
     background-color: whitesmoke;
 }
 
-.content {
-    background-color: #E0F2F1;
-}
-
 .navbar {
     height:80px;
     background-color:#ffffff;
@@ -47,6 +43,7 @@ thead {
 }
 body {
     padding-top:70px;
+    background-color: #E0F2F1;
 }
 .form1{
     background-color: #ffffff;
@@ -104,6 +101,7 @@ body {
 .pills > li.active > a {
     background-color: #009688;
 }
+
 /*------------------------RECURRING CHECKBOX-------------------------*/
 #recurringInput {
     display:none;
