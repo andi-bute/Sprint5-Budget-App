@@ -6,6 +6,7 @@ var DOMacceptEditBudgetBtn = $('#btn-accept-edit-budget');
 var DOMcancelEditBudgetBtn = $('#btn-cancel-edit-budget');
 
 var editingObject = null;
+var formattedDate = "";
 
 var drawTable = function (transactionsRepository){
     transactionsRepository.getAll().then(function(data){
@@ -58,6 +59,7 @@ var onSubmit = function(){
                     transactionsRepository.add(data).then(function() {
                         drawTable(transactionsRepository);
                         resetForm();
+                        displayCurrentMonthExpenses();
                     });
                 }
         });
@@ -71,6 +73,7 @@ var deleteClicked = function() {
     transactionsRepository.delete(id).then(function() {
             initializeBudget();
             drawTable(transactionsRepository);
+            displayCurrentMonthExpenses();
         });
 
     return false;
@@ -87,7 +90,6 @@ var recurringDeleteClicked = function() {
 };
 var editClicked = function() {
     var DOMparentTr = $(this).closest('tr');
-    DOMparentTr.addClass("highlight-tr");
     var id = DOMparentTr.data('id');
 
     transactionsRepository.get(id).then(function(data) {
@@ -96,10 +98,17 @@ var editClicked = function() {
         DOMparentTr.find('.transaction-table-amount').replaceWith("<input class='edit-transaction-input-amount' type='text' value='" + editingObject.amount + " RON'/>");
         DOMparentTr.find('.transaction-table-date').replaceWith("<input class='edit-transaction-input-date' type='text' value='" + editingObject.date + "'/>");
     });
-
     DOMparentTr.find('.delete').fadeOut();
     DOMparentTr.find('.edit').fadeOut(function() {
-        DOMparentTr.find('.edit-accept').fadeIn();
+        DOMparentTr.find('.edit-accept').fadeIn(function() {
+            DOMparentTr.addClass("highlight-tr");
+            transactionsRepository.get(id).then(function(data) {
+                editingObject = data;
+                DOMparentTr.find('.transaction-table-tag').replaceWith("<input class='edit-transaction-input-tag' type='text' value='" + editingObject.tag + "'/>");
+                DOMparentTr.find('.transaction-table-amount').replaceWith("<input class='edit-transaction-input-amount' type='text' value='" + editingObject.amount + " RON'/>");
+                DOMparentTr.find('.transaction-table-date').replaceWith("<input class='edit-transaction-input-date' type='text' value='" + editingObject.date + "'/>"); 
+            });
+        });
         DOMparentTr.find('.edit-cancel').fadeIn();
     });
 
@@ -120,6 +129,7 @@ var editClickedAccept = function() {
 
     transactionsRepository.update(id, editingObject).then(function() {
         initializeBudget();
+        displayCurrentMonthExpenses();
     });
     editingObject = null;
 
@@ -252,8 +262,8 @@ var recurringEditClickedCancel = function(){
 
 $(document).ready(function() {
     $('form').submit(onSubmit);
+
     $('#recurringInput').change(addRecurring);
-    drawTable(transactionsRepository);
 
     $('.tabs a').click(function(event){
         event.preventDefault();
@@ -261,11 +271,17 @@ $(document).ready(function() {
         drawRecurringsTable(recurringRepository);
     });
 
-    initializeBudget();
     DOMeditBudgetBtn.on('click', enableModifyBudget);
     DOMacceptEditBudgetBtn.on('click', acceptModifiedBudget);
     DOMcancelEditBudgetBtn.on('click', cancelModifiedBudget);
     $('.budget').on('keyup', '.edit-budget-input', fluidizeInput);
+
+    drawTable(transactionsRepository);
+    
+    initializeBudget();
+    formatDate();
+    displayDateDiv();
+    displayCurrentMonthExpenses();
 
     DOMtransactionsTable.on('click', 'a.delete', deleteClicked);
     DOMtransactionsTable.on('click', 'a.edit', editClicked);
